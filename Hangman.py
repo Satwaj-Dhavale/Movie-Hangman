@@ -27,7 +27,7 @@ def answer(guess):
             print("Incorrect Answer")
             return False
 
-print(random_movie)       #For cross reference
+#print(random_movie)       #For cross reference
 print("Guess the movie: ")
 letters = len(random_movie) * [' _ ']
 print(''.join(letters))
