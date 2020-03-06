@@ -1,6 +1,6 @@
 import pandas as pd
 import random
-
+import re
 df = pd.read_csv("movie_titles.csv")
 df = df[['title']]
 
@@ -10,8 +10,7 @@ for i in movies:
     if len(i) < 5:
         movies.remove(i) # Removing movies that have 4 letters or less
 
-movie_list = [i.replace(' ', '').lower() for i in movies]
-
+movie_list = [re.sub('\s|[^a-zA-Z]', lambda x: "" if x.group() == " " else "", i.lower()) for i in movies]
 random_movie_index = random.randrange(len(movie_list))
 random_movie = movie_list[random_movie_index]
 
@@ -28,7 +27,7 @@ def answer(guess):
             print("Incorrect Answer")
             return False
 
-#print(random_movie)       #For cross reference
+print(random_movie)       #For cross reference
 print("Guess the movie: ")
 letters = len(random_movie) * [' _ ']
 print(''.join(letters))
